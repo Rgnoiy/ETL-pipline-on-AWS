@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 df = pd.read_csv('example_transactions.csv')
 
 df.drop(columns=['card_number'], inplace=True)

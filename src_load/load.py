@@ -3,6 +3,7 @@ import psycopg2
 import src_load.functions as f
 import json
 
+
 def lambda_handler(event, context):
     # db_connection--------------------------------------------------------------------------------------------------------------------------------------
     db, user, password, host, port = f.get_db_credentials("team4-redshift-secrets")

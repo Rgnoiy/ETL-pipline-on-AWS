@@ -4,6 +4,7 @@ import psycopg2
 import src.functions as f
 import src.database as dbc
 
+
 def lambda_handler(event, context):
     #db connection and table creation-----------------------------------------------------------------------
     db, user, password, host, port = f.get_db_credentials("team4-redshift-secrets")

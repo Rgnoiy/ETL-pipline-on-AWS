@@ -1,6 +1,5 @@
 import psycopg2
 
-
 def create_tables(cur, connection1):
     
     """ create tables in Redshift"""

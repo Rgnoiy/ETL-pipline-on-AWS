@@ -1,5 +1,6 @@
 import boto3
 
+
 def sqs_delete_from_queue(receipt):
     sqs = boto3.client('sqs')
     sqs.delete_message(

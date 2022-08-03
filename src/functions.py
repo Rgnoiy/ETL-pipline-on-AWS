@@ -4,7 +4,6 @@ import boto3
 import pandas as pd
 from io import StringIO
 
-
 def get_db_credentials(credential_name):
     ssm = boto3.client("ssm")
     response = ssm.get_parameter(Name=credential_name)
