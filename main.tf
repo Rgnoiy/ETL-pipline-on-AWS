@@ -18,7 +18,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket = "team4-delon7-tf-state"
-    key    = "hisham-terraform.tfstate"
+    key    = "mia-terraform.tfstate"
     region = "eu-west-1"
     # role_arn = ""
     # session_name = ""
@@ -69,7 +69,7 @@ resource "aws_iam_role_policy_attachment" "lamdba_vpc_access" {
 resource "aws_lambda_function" "lambda_transform" {
   filename      = "src.zip"
   function_name = "team4stack-LambdaFunction"
-  handler       = "src.lambda_function.lambda_handler"
+  handler       = "src/first_lambda_fun.lambda_handler"
   role          =  aws_iam_role.lambda_function_role.arn
   runtime       = "python3.8"
   memory_size   = 512
@@ -153,7 +153,7 @@ resource "aws_lambda_event_source_mapping" "sqs_lambda_trigger" {
 resource "aws_lambda_function" "lambda_load" {
   filename      = "src_load.zip"
   function_name = "team4-lambda-load"
-  handler       = "src.lambda_function.lambda_handler"
+  handler       = "src/load.lambda_handler"
   role          =  aws_iam_role.lambda_function_role.arn
   runtime       = "python3.8"
   memory_size   = 512
@@ -161,7 +161,6 @@ resource "aws_lambda_function" "lambda_load" {
   layers = [
     "arn:aws:lambda:eu-west-1:770693421928:layer:Klayers-python38-aws-psycopg2:1",
     "arn:aws:lambda:eu-west-1:770693421928:layer:Klayers-p38-pandas:4",
-    "arn:aws:lambda:eu-west-1:770693421928:layer:Klayers-p38-SQLAlchemy:3"
   ]
   source_code_hash = filebase64sha256("src_load.zip")
 }
